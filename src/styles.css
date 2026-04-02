@@ -1,0 +1,110 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #11131b;
+  color: #eceff6;
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid #2a3142;
+  background: #171b26;
+}
+
+.toolbar h1 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.toolbar button {
+  border: 1px solid #3c475e;
+  border-radius: 8px;
+  background: #20283a;
+  color: #eceff6;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.main-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+}
+
+.canvas {
+  position: relative;
+  overflow: hidden;
+  background: #111722;
+}
+
+.edge-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.edge-layer line {
+  stroke: #7484aa;
+  stroke-width: 2;
+}
+
+.node-card {
+  position: absolute;
+  width: 144px;
+  min-height: 56px;
+  border: 1px solid #3a4762;
+  border-radius: 10px;
+  background: #1a2232;
+  color: inherit;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.node-card.is-selected {
+  border-color: #90b3ff;
+  box-shadow: 0 0 0 2px #90b3ff33;
+}
+
+.inspector {
+  border-left: 1px solid #2a3142;
+  padding: 16px;
+  background: #161b27;
+}
+
+.inspector h2 {
+  margin-top: 0;
+}
+
+.inspector-card {
+  background: #1f2738;
+  border: 1px solid #34405a;
+  border-radius: 10px;
+  padding: 12px;
+}
