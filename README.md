@@ -1,30 +1,32 @@
 # SkillTree Forge
 
-SkillTree Forge is a lightweight browser-based skill tree editor MVP for game development workflows.
+SkillTree Forge は、ゲーム開発向けのスキルツリーをブラウザ上で試作・調整するための軽量 MVP エディタです。
 
-## MVP features (initial foundation)
+## 現在の実装範囲（MVP 初期）
 
-- Dark themed editor shell (toolbar, canvas, inspector)
-- Render sample skill nodes with absolute positioning
-- Draw basic directed edges using SVG lines
-- Select a node and inspect its properties
-- Add a sample node from toolbar
-- localStorage load/save scaffold for tree state
+- ダークテーマの 3 ペイン構成（Toolbar / Canvas / Inspector）
+- サンプルノードの表示（絶対配置）
+- SVG 線による有向エッジ描画
+- ノード選択
+- Inspector でノード名・コスト・説明を編集
+- Toolbar からサンプルノードを追加
+- localStorage への保存・復元
+- 読み込み時のエッジ簡易バリデーション（自己ループ/重複/循環の除外）
 
-## Tech stack
+## 技術スタック
 
 - React
-- TypeScript (strict)
+- TypeScript（strict）
 - Vite
 
-## Setup
+## セットアップ
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Build
+## ビルド
 
 ```bash
 npm run build

@@ -6,6 +6,10 @@ import { sampleTree } from './data/sampleTree';
 import type { SkillNode, SkillTreeData } from './types/skillTree';
 import { loadTree, saveTree } from './utils/storage';
 
+function createNodeId(nodes: SkillNode[]): string {
+  return `n-${String(nodes.length + 1).padStart(3, '0')}`;
+}
+
 export function App() {
   const [tree, setTree] = useState<SkillTreeData>(() => loadTree() ?? sampleTree);
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(tree.nodes[0]?.id ?? null);
@@ -21,7 +25,7 @@ export function App() {
 
   function handleAddSampleNode() {
     const newNode: SkillNode = {
-      id: `n-${String(tree.nodes.length + 1).padStart(3, '0')}`,
+      id: createNodeId(tree.nodes),
       name: `New Skill ${tree.nodes.length + 1}`,
       description: 'Sample node created from toolbar action.',
       position: { x: 120 + tree.nodes.length * 40, y: 320 },
@@ -35,6 +39,16 @@ export function App() {
     setSelectedNodeId(newNode.id);
   }
 
+  function handleUpdateNode(
+    nodeId: string,
+    patch: Partial<Pick<SkillNode, 'name' | 'description' | 'cost'>>,
+  ) {
+    setTree((prev) => ({
+      ...prev,
+      nodes: prev.nodes.map((node) => (node.id === nodeId ? { ...node, ...patch } : node)),
+    }));
+  }
+
   return (
     <div className="app-shell">
       <Toolbar onAddSampleNode={handleAddSampleNode} />
@@ -45,7 +59,7 @@ export function App() {
           selectedNodeId={selectedNodeId}
           onSelectNode={setSelectedNodeId}
         />
-        <Inspector selectedNode={selectedNode} />
+        <Inspector selectedNode={selectedNode} onUpdateNode={handleUpdateNode} />
       </main>
     </div>
   );
